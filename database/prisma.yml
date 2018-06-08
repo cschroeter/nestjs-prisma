@@ -1,5 +1,5 @@
 # The endpoint of your Prisma API (deployed to a Prisma Sandbox).
-endpoint: <YOUR ENDPOINT>
+endpoint: https://eu1.prisma.sh/public-agatepuma-476/my-app/dev
 
 # The file containing the definition of your data model.
 datamodel: datamodel.graphql
