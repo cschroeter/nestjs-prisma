@@ -7,11 +7,12 @@ import { AppService } from './app.service';
 import { AppResolvers } from './app.resolver';
 import { SubscriptionsService } from './subscriptions/subscriptions.service';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot()],
   controllers: [AppController],
-  providers: [AppService, AppResolvers],
+  providers: [AppService, AppResolvers, PrismaService],
 })
 export class ApplicationModule implements NestModule {
   constructor(
@@ -37,14 +38,7 @@ export class ApplicationModule implements NestModule {
         graphqlExpress(req => ({
           schema,
           rootValue: req,
-          context: {
-            ...req,
-            db: new Prisma({
-              typeDefs: 'src/generated/prisma.graphql',
-              endpoint: '<YOUR ENDPOINT>',
-              debug: true,
-            }),
-          },
+          context: req,
         })),
       )
       .forRoutes('/graphql');

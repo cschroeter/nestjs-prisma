@@ -2,7 +2,6 @@ import * as WebSocket from 'ws';
 import { Injectable, Inject, OnModuleDestroy } from '@nestjs/common';
 import { ServerOptions, SubscriptionServer } from 'subscriptions-transport-ws';
 import { execute, subscribe } from 'graphql';
-import { Prisma } from 'prisma-binding';
 
 @Injectable()
 export class SubscriptionsService implements OnModuleDestroy {
@@ -20,18 +19,6 @@ export class SubscriptionsService implements OnModuleDestroy {
         execute,
         subscribe,
         schema,
-        onOperation: (message, params) => {
-          return {
-            ...params,
-            context: {
-              db: new Prisma({
-                typeDefs: 'src/generated/prisma.graphql',
-                endpoint: '<YOUR ENDPOINT>',
-                debug: true,
-              }),
-            },
-          };
-        },
         ...options,
       },
       {
