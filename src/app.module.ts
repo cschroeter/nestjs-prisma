@@ -1,18 +1,29 @@
 import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { GraphQLModule, GraphQLFactory } from '@nestjs/graphql';
-import { Prisma } from 'prisma-binding';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppResolvers } from './app.resolver';
 import { SubscriptionsService } from './subscriptions/subscriptions.service';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
-import { PrismaService } from './prisma.service';
+import { Prisma } from './generated/prisma';
 
 @Module({
   imports: [GraphQLModule, SubscriptionsModule.forRoot()],
   controllers: [AppController],
-  providers: [AppService, AppResolvers, PrismaService],
+  providers: [
+    AppService,
+    AppResolvers,
+    {
+      provide: Prisma,
+      useFactory: () => {
+        return new Prisma({
+          endpoint: '<YOUR ENDPOINT>',
+          debug: false,
+        });
+      },
+    },
+  ],
 })
 export class ApplicationModule implements NestModule {
   constructor(
