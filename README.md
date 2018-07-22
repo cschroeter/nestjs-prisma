@@ -2,7 +2,14 @@
 
 ## Description
 
-description
+I've started working on an example project to integrate [Prisma](https://www.prisma.io/) in NestJS.
+Supported features:
+
+- [x] Project setup
+- [x] Queries
+- [x] Mutations
+- [x] Subscriptions
+- [x] Intellisense support
 
 ## Installation
 
