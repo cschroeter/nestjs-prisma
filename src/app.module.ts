@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { AppResolvers } from './app.resolver';
-import { Prisma } from './generated/prisma';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -13,18 +13,8 @@ import { Prisma } from './generated/prisma';
         requireResolversForResolveType: false,
       },
     }),
+    PrismaModule,
   ],
-  providers: [
-    AppResolvers,
-    {
-      provide: Prisma,
-      useFactory: () => {
-        return new Prisma({
-          endpoint: 'https://eu1.prisma.sh/public-agatepuma-476/my-app/dev',
-          debug: false,
-        });
-      },
-    },
-  ],
+  providers: [AppResolvers],
 })
 export class ApplicationModule {}

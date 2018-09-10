@@ -1,5 +1,5 @@
 # The endpoint of your Prisma API (deployed to a Prisma Sandbox).
-endpoint: <YOUR ENDPOINT>
+endpoint: https://eu1.prisma.sh/public-agatepuma-476/my-app/dev
 
 # The file containing the definition of your data model.
 datamodel: datamodel.graphql
@@ -8,7 +8,7 @@ datamodel: datamodel.graphql
 seed:
   import: seed.graphql
 
-# Download the GraphQL schema of the Prisma API into 
+# Download the GraphQL schema of the Prisma API into
 # `src/generated/prisma.graphql` (as specfied in `.graphqlconfig.yml`).
 hooks:
   post-deploy:
