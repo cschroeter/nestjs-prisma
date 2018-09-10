@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { AppResolvers } from './app.resolver';
 import { PrismaModule } from './prisma/prisma.module';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -14,7 +14,7 @@ import { PrismaModule } from './prisma/prisma.module';
       },
     }),
     PrismaModule,
+    PostsModule,
   ],
-  providers: [AppResolvers],
 })
 export class ApplicationModule {}

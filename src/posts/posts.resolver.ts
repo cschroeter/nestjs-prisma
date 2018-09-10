@@ -1,8 +1,8 @@
 import { Query, Resolver, Subscription, Mutation } from '@nestjs/graphql';
-import { PrismaService } from './prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
-@Resolver('post')
-export class AppResolvers {
+@Resolver()
+export class PostsResolver {
   constructor(private readonly prisma: PrismaService) {}
 
   @Query('posts')
