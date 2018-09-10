@@ -7,7 +7,7 @@ import { PostsModule } from './posts/posts.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      typePaths: ['./**/*.graphql'],
+      typePaths: ['./src/**/*.graphql'],
       path: '/',
       installSubscriptionHandlers: true,
       resolverValidationOptions: {
